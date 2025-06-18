@@ -132,7 +132,6 @@ npm run dev:frontend
 ```
 
 ### Production Build
-
 ```bash
 # Build frontend for production
 npm run build:frontend
@@ -364,4 +363,3 @@ For questions or issues:
 1. Check the troubleshooting section
 2. Review test files for usage examples
 3. Examine the source code for implementation details
-
