@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .article-content {
+            margin-bottom: 40px;
+        }
+        .comments-section {
+            border-top: 2px solid #eee;
+            padding-top: 30px;
+        }
+        .comment {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .comment-header {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .comment-text {
+            margin-bottom: 10px;
+        }
+        .karma-display {
+            display: inline-block;
+            background: #e7e7e7;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="article-content">
+        <h1>{{ page.title }}</h1>
+        <div class="body">
+            {{ page.body|richtext }}
+        </div>
+    </div>
+    
+    <div class="comments-section">
+        <h2>Comments ({{ comments.count }})</h2>
+        
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="comment" data-comment-id="{{ comment.id }}">
+                    <div class="comment-header">
+                        <strong>{{ comment.user.username }}</strong>
+                        <span>{{ comment.timestamp|date:"M d, Y H:i" }}</span>
+                    </div>
+                    <div class="comment-text">{{ comment.text }}</div>
+                    <div class="karma-container">
+                        <span class="karma-display" 
+                              data-comment-id="{{ comment.id }}"
+                              data-karma-score="{{ comment.karma_score }}">
+                            Karma: {{ comment.karma_score }}
+                        </span>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No comments yet.</p>
+        {% endif %}
+    </div>
+    
+    <!-- Vue.js will be loaded here -->
+    <div id="karma-app"></div>
+    <script type="module" src="/static/js/main.js"></script>
+</body>
+</html>
+

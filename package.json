@@ -1,0 +1,19 @@
+{
+  "name": "wagtail-karma-blog",
+  "version": "1.0.0",
+  "description": "Wagtail CMS with Vue.js karma system and Cypress testing",
+  "scripts": {
+    "install:frontend": "cd frontend && npm install",
+    "build:frontend": "cd frontend && npm run build",
+    "dev:frontend": "cd frontend && npm run dev",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "cypress run",
+    "test:django": "python manage.py test",
+    "test:all": "npm run test:django && npm run test:e2e"
+  },
+  "devDependencies": {
+    "cypress": "^13.0.0"
+  }
+}
+
